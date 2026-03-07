@@ -5,17 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rishanth Reddy G — AI Generalist & Prompt Engineer</title>
-    <meta name="description"
-        content="Portfolio of G Rishanth Reddy — AI Generalist, Prompt Engineer, and creative technologist based in Hyderabad.">
+    <meta name="description" content="Portfolio of G Rishanth Reddy">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rishanth Reddy G">
+    <meta property="og:description" content="Portfolio of G Rishanth Reddy ">
+    <meta property="og:image" content="https://rishi5377.github.io/Portfolio/og-image.png">
+    <meta property="og:url" content="https://rishi5377.github.io/Portfolio/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rishanth Reddy G — AI Generalist & Prompt Engineer">
+    <meta name="twitter:description"
+        content="AI Generalist, Prompt Engineer, and creative technologist based in Hyderabad.">
+    <meta name="twitter:image" content="https://rishi5377.github.io/Portfolio/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'><circle cx='30' cy='30' r='28' fill='none' stroke='%23c9a96e' stroke-width='2'/><text x='30' y='35' text-anchor='middle' fill='%23c9a96e' font-family='serif' font-size='20' font-weight='700'>R</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <a href="#home" class="skip-link">Skip to content</a>
 
     <!-- ====== 3D PERSPECTIVE GRID BACKGROUND ====== -->
     <div class="grid-bg" aria-hidden="true"></div>
@@ -36,69 +55,121 @@
         </nav>
 
         <div class="hero">
-            <div class="hero__illustration">
-                <video src="anime_boy.mp4" autoplay loop muted playsinline class="hero__video"></video>
-            </div>
             <div class="hero__content">
                 <h1 class="hero__tagline">
-                    <span class="tagline-line1">Jack of all trades,</span>
-                    <span class="tagline-line2">Master of some.</span>
+                    <span class="tagline-line1">Hi, There</span>
+                    <span class="tagline-line2"><span class="tagline-prefix">I'm an </span><strong
+                            class="typed-text"></strong><span class="cursor">&nbsp;</span></span>
                 </h1>
                 <p class="hero__bio">
-                    Hey there! I'm Rishi, A Prompt Engineer/ AI Generalist based in Hyderabad. I do a lot of things, the
-                    heart of it would be weaving meaningful stories through chaos.
+                    AI-focused undergraduate specializing in Generative AI and Data Science. I build
+                    production-ready applications using modern AI frameworks, orchestrating models
+                    and scalable data systems. Passionate about bringing concepts to life through strategic prompt
+                    design and model fine-tuning.
                 </p>
+                <div class="hero__actions">
+                    <a href="#projects" class="btn btn--primary">View My Work ↓</a>
+                    <a href="#contact" class="btn btn--secondary">Let's Talk</a>
+                </div>
+            </div>
+            <div class="hero__illustration">
+                <video src="assets/anime_boy.mp4" autoplay loop muted playsinline class="hero__video"></video>
             </div>
         </div>
     </section>
 
-    <!-- ====== SECTION 2: PROJECTS ====== -->
+    <!-- ====== SECTION 2: PROJECTS & TECH STACK ====== -->
     <section id="projects" class="section section--projects">
-        <h2 class="section__title">Key Projects</h2>
-        <div class="projects-carousel">
-            <div class="carousel__track" id="carouselTrack">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="card-face">
-                        <div class="card-icons">
-                            <span>🧠</span><span>🤖</span><span>⚡</span>
+        <h2 class="section__title">Key Projects & Tech Stack</h2>
+
+        <div class="projects-folder-container">
+
+            <!-- Folder 1: Projects -->
+            <div class="folder-wrapper">
+                <div class="folder"
+                    style="--folder-color: var(--gold); --folder-back-color: var(--gold-dark); --paper-1: #ffffff; --paper-2: #fdfbf7; --paper-3: var(--cream);">
+                    <div class="folder__back">
+                        <!-- Project 1 (Top Paper) -->
+                        <div class="paper paper-1" data-github="https://github.com/Rishi5377/NagaraTrack-Lite"
+                            style="--magnet-x: 0px; --magnet-y: 0px;">
+                            <div class="paper-content">
+                                <span class="paper-icon">📄</span>
+                                <h3>NagaraTrack-Lite</h3>
+                                <p>Production civic tracker built entirely through AI prompts.</p>
+                                <span class="paper-tech">AI Agents • Prompting</span>
+                            </div>
                         </div>
-                        <h3 class="card-title">Diabetic Retinopathy Detection</h3>
-                        <div class="card-tech">Python • TensorFlow • ML</div>
-                        <div class="card-year">2024</div>
+                        <!-- Project 2 (Middle Paper) -->
+                        <div class="paper paper-2"
+                            data-github="https://github.com/Rishi5377/Diabetic-Retinopathy-Detector"
+                            style="--magnet-x: 0px; --magnet-y: 0px;">
+                            <div class="paper-content">
+                                <span class="paper-icon">🧠</span>
+                                <h3>Diabetic Retinopathy Detection</h3>
+                                <p>CNN-based medical diagnostic system with 67% accuracy on retinal images</p>
+                                <span class="paper-tech">Python • TensorFlow</span>
+                            </div>
+                        </div>
+                        <!-- Project 3 (Bottom Paper) -->
+                        <div class="paper paper-3" data-github="https://github.com/Rishi5377/Alumini"
+                            style="--magnet-x: 0px; --magnet-y: 0px;">
+                            <div class="paper-content">
+                                <span class="paper-icon">🎓</span>
+                                <h3>Alumni Engagement Platform</h3>
+                                <p>Gamified MERN stack networking system with a bounty and referral system.</p>
+                                <span class="paper-tech">React • Node.js</span>
+                            </div>
+                        </div>
+
+                        <!-- Folder Front Flaps -->
+                        <div class="folder__front"></div>
+                        <div class="folder__front right"></div>
                     </div>
                 </div>
-                <!-- Project 2 (Center/Active) -->
-                <div class="project-card">
-                    <div class="card-face">
-                        <div class="card-icons">
-                            <span>📄</span><span>💎</span><span>💯</span>
-                        </div>
-                        <h3 class="card-title">NagaraTrack-Lite</h3>
-                        <div class="card-tech">AI Agents • Prompt Engineering</div>
-                        <div class="card-year">2024</div>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="card-face">
-                        <div class="card-icons">
-                            <span>🔍</span><span>📊</span><span>🚀</span>
-                        </div>
-                        <h3 class="card-title">Python AI/ML Portfolio</h3>
-                        <div class="card-tech">Python • ML • Data Science</div>
-                        <div class="card-year">2023-24</div>
-                    </div>
-                </div>
+                <p class="folder-instructions">Click to view Projects</p>
             </div>
-            <!-- Project Info below cards -->
-            <div class="project-info" id="projectInfo">
-                <h3 class="project-info__title">Diabetic Retinopathy Detection System</h3>
-                <p class="project-info__desc">Developed end-to-end AI-powered medical diagnostic application using
-                    Convolutional Neural Networks (CNN) to detect and classify diabetic retinopathy.</p>
-                <a href="https://github.com/Rishi5377/Diabetic-Retinopathy-Detector" target="_blank"
-                    class="project-info__btn" id="projectLink">View Case Study on GitHub</a>
+
+            <!-- Folder 2: Tech Stack -->
+            <div class="folder-wrapper">
+                <div class="folder"
+                    style="--folder-color: #2a2a2a; --folder-back-color: #1a1a1a; --paper-1: #f5f0e8; --paper-2: #e0d5c5; --paper-3: #c9a96e;">
+                    <div class="folder__back">
+                        <!-- Stat 1 (Top Paper) -->
+                        <div class="paper paper-1" style="--magnet-x: 0px; --magnet-y: 0px;">
+                            <div class="paper-content">
+                                <span class="paper-icon">🤖</span>
+                                <h3>AI & Prompt Engineering</h3>
+                                <p>Expertise in LLM Agents, Chain-of-Thought, Claude, and ChatGPT workflows.</p>
+                                <span class="paper-tech">Prompt Design</span>
+                            </div>
+                        </div>
+                        <!-- Stat 2 (Middle Paper) -->
+                        <div class="paper paper-2" style="--magnet-x: 0px; --magnet-y: 0px;">
+                            <div class="paper-content">
+                                <span class="paper-icon">💻</span>
+                                <h3>Languages & Frameworks</h3>
+                                <p>Proficient in Python, building with TensorFlow, PyTorch, Pandas & Scikit-learn.</p>
+                                <span class="paper-tech">Machine Learning</span>
+                            </div>
+                        </div>
+                        <!-- Stat 3 (Bottom Paper) -->
+                        <div class="paper paper-3" style="--magnet-x: 0px; --magnet-y: 0px;">
+                            <div class="paper-content">
+                                <span class="paper-icon">⚡</span>
+                                <h3>Dev Tools</h3>
+                                <p>Experienced in Git, GitHub, Docker, React, Node.js, and REST APIs.</p>
+                                <span class="paper-tech">Full Stack</span>
+                            </div>
+                        </div>
+
+                        <!-- Folder Front Flaps -->
+                        <div class="folder__front"></div>
+                        <div class="folder__front right"></div>
+                    </div>
+                </div>
+                <p class="folder-instructions">Click to view Tech Stack</p>
             </div>
+
         </div>
     </section>
 
@@ -108,28 +179,37 @@
         <div class="timeline-card">
             <div class="timeline">
                 <div class="timeline__item">
-                    <div class="timeline__dot"></div>
-                    <p class="timeline__text">
-                        <strong>Bachelor of Technology in Data Science</strong><br>
-                        <em>Sreenidhi Institute of Science and Technology (SNIST), Hyderabad</em><br>
-                        Sep 2023 – Present • GPA: 8.7/10.0
-                    </p>
+                    <div class="timeline__dot timeline__dot--highlight"></div>
+                    <div class="timeline__content">
+                        <span class="timeline__year">2024 — Present</span>
+                        <strong>Architecting the Future with AI</strong>
+                        <em class="timeline__role">Prompt Engineer & AI Generalist</em>
+                        <p class="timeline__desc">Transitioned from traditional ML to orchestrating large language
+                            models. Building intelligent, zero-code production applications through prompt design and
+                            multi-agent workflows.</p>
+                    </div>
+                </div>
+                <div class="timeline__item">
+                    <div class="timeline__dot timeline__dot--highlight"></div>
+                    <div class="timeline__content">
+                        <span class="timeline__year">Mid 2024</span>
+                        <strong>Solving Real Problems with ML</strong>
+                        <em class="timeline__role">Deep Learning & Computer Vision</em>
+                        <p class="timeline__desc">Built an end-to-end medical diagnostic system using CNNs to detect
+                            Diabetic Retinopathy from retina images — turning a theoretical model into a practical,
+                            real-world solution.</p>
+                    </div>
                 </div>
                 <div class="timeline__item">
                     <div class="timeline__dot"></div>
-                    <p class="timeline__text">
-                        <strong>Intermediate (Class XII)</strong><br>
-                        <em>Narayana Jr. College, India</em><br>
-                        Feb 2023 • Score: 97%
-                    </p>
-                </div>
-                <div class="timeline__item">
-                    <div class="timeline__dot"></div>
-                    <p class="timeline__text">
-                        <strong>SSC (Class X)</strong><br>
-                        <em>Narayana Jr. College, India</em><br>
-                        Mar 2021 • GPA: 10.0/10.0
-                    </p>
+                    <div class="timeline__content">
+                        <span class="timeline__year">2023 — 2024</span>
+                        <strong>The Data Science Spark</strong>
+                        <em class="timeline__role">B.Tech in Data Science, SNIST</em>
+                        <p class="timeline__desc">Dove headfirst into predictive modeling and data analytics. Built a
+                            strong foundation in Python and Data Science that paved the way for the leap into Generative
+                            AI.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,14 +228,15 @@
             </div>
             <div class="contact-card__name">
                 <h3>RISHANTH REDDY G</h3>
-                <p>AI Generalist &amp; Prompt Engineer</p>
+                <p>AI Generalist</p>
             </div>
             <div class="contact-card__divider"></div>
             <div class="contact-card__details">
                 <div class="contact-row">
                     <div class="contact-col">
                         <span class="contact-label">EMAIL</span>
-                        <span class="contact-value">golirishanthreddy@gmail.com</span>
+                        <span class="contact-value"><a
+                                href="mailto:golirishanthreddy@gmail.com">golirishanthreddy@gmail.com</a></span>
                     </div>
                     <div class="contact-col">
                         <span class="contact-label">GITHUB</span>
@@ -166,7 +247,7 @@
                 <div class="contact-row">
                     <div class="contact-col">
                         <span class="contact-label">PHONE</span>
-                        <span class="contact-value">+91 9100648994</span>
+                        <span class="contact-value"><a href="tel:+919100648994">+91 9100648994</a></span>
                     </div>
                     <div class="contact-col">
                         <span class="contact-label">LINKEDIN</span>
@@ -177,6 +258,12 @@
             </div>
         </div>
     </section>
+
+    <!-- Premium Libraries -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
 
     <script src="script.js"></script>
 </body>
