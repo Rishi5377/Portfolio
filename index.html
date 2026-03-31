@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Special+Elite&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -173,46 +173,91 @@
         </div>
     </section>
 
-    <!-- ====== SECTION 3: JOURNEY ====== -->
+    <!-- ====== SECTION 3: JOURNEY (THE EXPEDITION) ====== -->
     <section id="journey" class="section section--journey">
-        <h2 class="section__title">My Journey</h2>
-        <div class="timeline-card">
-            <div class="timeline">
-                <div class="timeline__item">
-                    <div class="timeline__dot timeline__dot--highlight"></div>
-                    <div class="timeline__content">
-                        <span class="timeline__year">2024 — Present</span>
-                        <strong>Architecting the Future with AI</strong>
-                        <em class="timeline__role">Prompt Engineer & AI Generalist</em>
-                        <p class="timeline__desc">Transitioned from traditional ML to orchestrating large language
-                            models. Building intelligent, zero-code production applications through prompt design and
-                            multi-agent workflows.</p>
-                    </div>
+        <h2 class="section__title">The Expedition Map</h2>
+        <div class="map-container">
+            <div class="map-wrapper" id="mapWrapper">
+                <img src="assets/map.png" alt="Expedition Map" class="map-image" loading="lazy">
+
+                <!-- Shared SVG gradient for map pins -->
+                <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+                    <defs>
+                        <radialGradient id="pinGrad" cx="38%" cy="35%" r="65%">
+                            <stop offset="0%" stop-color="#ff6b6b" />
+                            <stop offset="40%" stop-color="#dc2626" />
+                            <stop offset="100%" stop-color="#8b1a1a" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+
+                <!-- Coordinate-based Markers (aligned to map landmarks) -->
+                <div class="marker marker--port" data-event="port" style="top: 65.5%; left: 24.1%">
+                    <div class="marker__glow"></div>
+                    <svg class="marker__pin" viewBox="0 0 384 512">
+                        <path
+                            d="M192 0C86 0 0 86 0 192c0 77 27 99 172 310a24 24 0 0039 0C357 291 384 269 384 192 384 86 298 0 192 0z"
+                            fill="url(#pinGrad)" />
+                        <circle cx="192" cy="192" r="65" fill="#f5e6d0" opacity="0.9" />
+                    </svg>
+                    <span class="marker__label">Starting Port</span>
                 </div>
-                <div class="timeline__item">
-                    <div class="timeline__dot timeline__dot--highlight"></div>
-                    <div class="timeline__content">
-                        <span class="timeline__year">Mid 2024</span>
-                        <strong>Solving Real Problems with ML</strong>
-                        <em class="timeline__role">Deep Learning & Computer Vision</em>
-                        <p class="timeline__desc">Built an end-to-end medical diagnostic system using CNNs to detect
-                            Diabetic Retinopathy from retina images — turning a theoretical model into a practical,
-                            real-world solution.</p>
-                    </div>
+                <div class="marker marker--learning" data-event="learning" style="top: 45.5%; left: 30.1%;">
+                    <div class="marker__glow"></div>
+                    <svg class="marker__pin" viewBox="0 0 384 512">
+                        <path
+                            d="M192 0C86 0 0 86 0 192c0 77 27 99 172 310a24 24 0 0039 0C357 291 384 269 384 192 384 86 298 0 192 0z"
+                            fill="url(#pinGrad)" />
+                        <circle cx="192" cy="192" r="65" fill="#f5e6d0" opacity="0.9" />
+                    </svg>
+                    <span class="marker__label">Isle of Learning</span>
                 </div>
-                <div class="timeline__item">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <span class="timeline__year">2023 — 2024</span>
-                        <strong>The Data Science Spark</strong>
-                        <em class="timeline__role">B.Tech in Data Science, SNIST</em>
-                        <p class="timeline__desc">Dove headfirst into predictive modeling and data analytics. Built a
-                            strong foundation in Python and Data Science that paved the way for the leap into Generative
-                            AI.</p>
-                    </div>
+                <div class="marker marker--knowledge" data-event="knowledge" style="top: 57.2%; left: 49.2%;">
+                    <div class="marker__glow"></div>
+                    <svg class="marker__pin" viewBox="0 0 384 512">
+                        <path
+                            d="M192 0C86 0 0 86 0 192c0 77 27 99 172 310a24 24 0 0039 0C357 291 384 269 384 192 384 86 298 0 192 0z"
+                            fill="url(#pinGrad)" />
+                        <circle cx="192" cy="192" r="65" fill="#f5e6d0" opacity="0.9" />
+                    </svg>
+                    <span class="marker__label">Knowledge Cove</span>
+                </div>
+                <div class="marker marker--creative" data-event="creative" style="top: 76.5%; left: 63.2%;">
+                    <div class="marker__glow"></div>
+                    <svg class="marker__pin" viewBox="0 0 384 512">
+                        <path
+                            d="M192 0C86 0 0 86 0 192c0 77 27 99 172 310a24 24 0 0039 0C357 291 384 269 384 192 384 86 298 0 192 0z"
+                            fill="url(#pinGrad)" />
+                        <circle cx="192" cy="192" r="65" fill="#f5e6d0" opacity="0.9" />
+                    </svg>
+                    <span class="marker__label">Creative Harbour</span>
+                </div>
+                <div class="marker marker--treasure" data-event="treasure" style="top: 43.7%; left: 76.3%;">
+                    <div class="marker__glow"></div>
+                    <svg class="marker__pin" viewBox="0 0 384 512">
+                        <path
+                            d="M192 0C86 0 0 86 0 192c0 77 27 99 172 310a24 24 0 0039 0C357 291 384 269 384 192 384 86 298 0 192 0z"
+                            fill="url(#pinGrad)" />
+                        <circle cx="192" cy="192" r="65" fill="#f5e6d0" opacity="0.9" />
+                    </svg>
+                    <span class="marker__label">Treasure Island</span>
                 </div>
             </div>
         </div>
+
+        <!-- Logbook Panel (Slide-out) -->
+        <aside class="logbook" id="logbook" aria-hidden="true">
+            <div class="logbook__overlay" id="logbookOverlay"></div>
+            <div class="logbook__panel parchment-bg">
+                <button class="logbook__close" id="logbookClose" aria-label="Close details">&times;</button>
+                <div class="logbook__inner" id="logbookContent">
+                    <!-- Dynamic content injected via JS -->
+                    <div class="logbook__placeholder">
+                        <p>Select a signal point on the map to view the expedition log.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
     </section>
 
     <!-- ====== SECTION 4: CONTACT ====== -->

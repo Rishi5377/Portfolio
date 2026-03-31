@@ -649,89 +649,281 @@ ul {
     opacity: 0.8;
 }
 
-/* ====== SECTION 3: JOURNEY ====== */
+/* ====== SECTION 3: JOURNEY (THE EXPEDITION) ====== */
 .section--journey {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding-top: 40px;
+    overflow: hidden;
 }
 
-.timeline-card {
-    background-color: var(--cream);
-    border: 1px solid var(--cream-border);
-    border-radius: 12px;
-    padding: 60px;
+.map-container {
     width: 100%;
-    max-width: 800px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    max-width: 1000px;
+    margin: 0 auto;
+    perspective: 1000px;
 }
 
-.timeline {
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    /* Removed background-color, border-radius, and box-shadow to remove the "board" */
     display: flex;
-    flex-direction: column;
-    gap: 40px;
-    position: relative;
+    align-items: center;
+    justify-content: center;
+    transform: none; /* Aligning flat with bg */
+    transition: transform 0.5s ease;
 }
 
-.timeline::before {
-    content: '';
+.map-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Back to cover for marker alignment consistency */
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.25)); /* Shadow for the parchment itself */
+    opacity: 1;
+}
+
+/* Markers — Classic Teardrop Expedition Pins */
+.marker {
     position: absolute;
-    top: 5px;
-    bottom: 5px;
-    left: 6px;
-    width: 0;
-    border-left: 2px dotted #ccc;
+    z-index: 5;
+    cursor: pointer;
+    transform: translate(-50%, -100%);
+    animation: marker-float 3.5s ease-in-out infinite;
 }
 
-.timeline__item {
-    position: relative;
-    padding-left: 40px;
+/* Stagger the float so each pin bobs independently */
+.marker--port { animation-delay: 0s; }
+.marker--learning { animation-delay: 0.7s; }
+.marker--knowledge { animation-delay: 1.4s; }
+.marker--creative { animation-delay: 2.1s; }
+.marker--treasure { animation-delay: 2.8s; }
+
+@keyframes marker-float {
+    0%, 100% { transform: translate(-50%, -100%) translateY(0); }
+    50% { transform: translate(-50%, -100%) translateY(-5px); }
 }
 
-.timeline__dot {
+/* Red circular glow behind the pin (pulsing) */
+.marker__glow {
     position: absolute;
-    left: 0;
-    top: 5px;
-    width: 14px;
-    height: 14px;
-    background-color: var(--bg);
-    border: 4px solid var(--text-primary);
+    top: 25%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    z-index: 1;
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.45) 0%, rgba(220, 38, 38, 0) 70%);
+    transform: translate(-50%, -50%);
+    animation: marker-glow-pulse 2s ease-in-out infinite;
+    pointer-events: none;
 }
 
-.timeline__content {
+@keyframes marker-glow-pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.6);
+        opacity: 1;
+    }
+}
+
+/* The SVG pin itself */
+.marker__pin {
+    width: 32px;
+    height: 42px;
+    display: block;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.4));
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                filter 0.35s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* === HOVER — lift and intensify === */
+.marker:hover .marker__pin {
+    transform: translateY(-8px) scale(1.15);
+    filter: drop-shadow(0 12px 10px rgba(0, 0, 0, 0.5));
+}
+
+.marker:hover .marker__glow {
+    animation: none;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(2);
+}
+
+
+.marker__label {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 15px;
+    background: rgba(46, 38, 30, 0.95);
+    color: #f7ead5;
+    padding: 6px 14px;
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    font-size: 13px;
+    font-family: 'Special Elite', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.marker:hover .marker__label {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Logbook Slide-out */
+.logbook {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    visibility: hidden;
+    transition: visibility 0s 0.4s;
+}
+
+.logbook[aria-hidden="false"] {
+    visibility: visible;
+    transition: visibility 0s 0s;
+}
+
+.logbook__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.logbook[aria-hidden="false"] .logbook__overlay {
+    opacity: 1;
+}
+
+.logbook__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     flex-direction: column;
-    gap: 4px;
 }
 
-.timeline__year {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
+.logbook[aria-hidden="false"] .logbook__panel {
+    transform: translateX(0);
+}
+
+.parchment-bg {
+    background-image: url('assets/logbook_parchment.png');
+    background-size: cover;
+    background-position: center;
+    border-left: 1px solid #d4c4a8;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+}
+
+.logbook__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #5d4a3e;
+    z-index: 10;
+}
+
+.logbook__inner {
+    padding: 60px 45px;
+    overflow-y: auto;
+    flex: 1;
+    color: #4b3b30;
+    font-family: 'Special Elite', monospace;
+    line-height: 1.6;
+}
+
+.logbook__entry h3 {
+    font-family: inherit;
+    font-size: 30px;
+    margin-bottom: 5px;
+    color: #2c211a;
     text-transform: uppercase;
-    color: var(--gold-dark);
-    margin-bottom: 4px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(75, 59, 48, 0.2);
+    padding-bottom: 10px;
 }
 
-.timeline__role {
-    font-size: 14px;
-    color: var(--text-body);
+.logbook__date {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #8b4513;
+    opacity: 0.8;
+}
+
+.logbook__role {
+    display: block;
     font-style: italic;
+    margin-bottom: 16px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(93, 74, 62, 0.2);
+    padding-bottom: 16px;
 }
 
-.timeline__desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--text-body);
-    margin-top: 6px;
+.logbook__desc {
+    font-size: 17px;
+    line-height: 1.8;
 }
 
-/* Highlighted dot for experience items */
-.timeline__dot--highlight {
-    border-color: var(--gold);
-    background-color: var(--gold-light);
+.logbook__desc p {
+    margin-bottom: 20px;
+}
+
+.logbook__desc ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.logbook__desc li {
+    margin-bottom: 10px;
+}
+
+.logbook__list {
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid rgba(139, 69, 19, 0.2);
+}
+
+.logbook__list p {
+    margin: 0.5rem 0 !important;
+    font-size: 0.95rem;
 }
 
 /* Skills Grid */

@@ -241,13 +241,103 @@ document.addEventListener('DOMContentLoaded', () => {
         scale: 0.9, opacity: 0, duration: 1, ease: 'power3.out',
     });
 
-    // Timeline items stagger in
-    gsap.utils.toArray('.timeline__item').forEach((item, i) => {
-        gsap.from(item, {
-            scrollTrigger: { trigger: item, start: 'top 85%' },
-            x: -40, opacity: 0, duration: 0.7, ease: 'power3.out',
-            delay: i * 0.15,
+    // Interactive Map & Logbook Logic
+    const markers = document.querySelectorAll('.marker');
+    const logbook = document.getElementById('logbook');
+    const logbookClose = document.getElementById('logbookClose');
+    const logbookContent = document.getElementById('logbookContent');
+
+    const expeditionData = {
+        "port": {
+            date: "2018 - 2023",
+            title: "Starting Port: The Foundation Builder",
+            role: "Education & Departure",
+            desc: `<p>Started with a perfect 10.0 GPA in Class X, proving that consistency and curiosity could coexist. Scored 97% in Intermediate, but something was missing. I was solving textbook problems when real-world challenges existed everywhere.</p>
+                   <p><strong>September 2023 marked the departure:</strong> Enrolled in B.Tech Data Science at SNIST, ready to trade theory for impact.</p>`
+        },
+        "learning": {
+            date: "Sep 2023 - Mid 2024",
+            title: "The Skill Acquisition Phase",
+            role: "Fundamentals & Discovery",
+            desc: `<p>Dove deep into the fundamentals: Python, TensorFlow, and Machine Learning algorithms. Earned <strong>certifications</strong> in AI Fundamentals, Data Analytics with Python, and Google's 5-Day AI Agents course.</p>
+                   <p>But learning alone wasn't enough; I needed to know if these tools could solve real problems. Started experimenting with <strong>GPT-4</strong> and <strong>Claude</strong>, discovering that the right prompt could unlock solutions that would've taken weeks to code.</p>
+                   `
+        },
+        "knowledge": {
+            date: "Mid 2024 - Late 2025",
+            title: "The Explorer & Competitor",
+            role: "Projects & Hackathons",
+            desc: `<p>Developed a <strong>diabetic retinopathy detection system</strong> with accuracy of <strong>67%</strong>,for actual healthcare impact. Then came <strong>NagaraTrack-Lite</strong>, proving I could build production apps using only AI prompts (80% less manual coding).</p>
+                   <div class="logbook__list">
+                       <p>• <strong>Nov 2025:</strong> 5th place in Kaggle Competition - learned consistency when models fail.</p>
+                       <p>• <strong>2025:</strong> 3rd place in Avinya Hackathon - turned pressure into performance.</p>
+                       <p>• <strong>Feb 2026:</strong> 4th place in HackFest'26 - mastered rapid prototyping in 48 hours.</p>
+                   </div>
+                   `
+        },
+        "creative": {
+            date: "Feb 2024 - Present",
+            title: "The Builder & Mentor",
+            role: "Leadership & Community",
+            desc: `<p>Became <strong>Data Head at THE INFINITIX CLUB</strong>. Built the <strong>Alumni Engagement Platform</strong> with a gamified bounty system, proving human psychology matters as much as technical skills.</p>
+                   <p>Posting my thoughts in <strong>LinkedIn</strong> about AI agents and autonomous systems. Not just consuming AI trends, but contributing as well.</p>
+                   <p><strong>Current Focus:</strong> Architecting MERN stack applications, optimising prompt chains, and proving theory + speed + user empathy = real impact.</p>`
+        },
+        "treasure": {
+            date: "The Future",
+            title: "AI Generalist Mastery",
+            role: "The Destination",
+            desc: `<p>The X on the map isn't a job, it's becoming the person who walks into a startup and says, <em>"I can ship this in 48 hours."</em></p>
+                   <p><strong>The Treasure:</strong></p>
+                   <ul>
+                       <li>Joining a startup solving problems that matter.</li>
+                       <li>Building AI systems users actually want.</li>
+                       <li>Proving the right prompts + the right team = 10x output.</li>
+                       <li>Mentoring the next wave of builders.</li>
+                   </ul>
+                   `
+        }
+    };
+
+    if (markers.length > 0 && logbook) {
+        markers.forEach(marker => {
+            marker.addEventListener('click', () => {
+                const id = marker.getAttribute('data-event');
+                const data = expeditionData[id];
+
+                if (data) {
+                    // Update content
+                    logbookContent.innerHTML = `
+                        <div class="logbook__entry">
+                            <span class="logbook__date">${data.date}</span>
+                            <h3>${data.title}</h3>
+                            <span class="logbook__role">${data.role}</span>
+                            <div class="logbook__desc">
+                                ${data.desc}
+                            </div>
+                        </div>
+                    `;
+
+                    // Open panel
+                    logbook.setAttribute('aria-hidden', 'false');
+                    lenis.stop(); // Stop page scrolling
+                }
+            });
         });
+
+        const closeLogbook = () => {
+            logbook.setAttribute('aria-hidden', 'true');
+            lenis.start(); // Resume page scrolling
+        };
+
+        logbookClose.addEventListener('click', closeLogbook);
+        logbook.querySelector('.logbook__overlay').addEventListener('click', closeLogbook);
+    }
+
+    // Map reveal animation
+    gsap.from('.map-wrapper', {
+        scrollTrigger: { trigger: '.map-wrapper', start: 'top 80%' },
+        rotationX: 30, opacity: 0, scale: 0.9, duration: 1.2, ease: 'power3.out'
     });
 
     // Skills tags stagger
