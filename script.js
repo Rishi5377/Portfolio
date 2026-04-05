@@ -356,7 +356,82 @@ document.addEventListener('DOMContentLoaded', () => {
         y: 60, opacity: 0, duration: 0.9, ease: 'power3.out',
     });
 
-    // ====== 6. INTERACTIVE PROJECTS FOLDER ======
+    // ====== 6. CONTACT SECTION SYNCHRONIZED ANIMATION ======
+    const contactHeadline = document.querySelector('.contact-cta__headline a');
+    if (contactHeadline) {
+        const textNode = contactHeadline.firstChild;
+        if (textNode && textNode.nodeType === Node.TEXT_NODE) {
+            const textContent = textNode.textContent;
+            const charSpans = textContent.split('').map(char => {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.textContent = char === ' ' ? '\u00A0' : char; // Preserve spaces
+                return span;
+            });
+
+            // Replace text node with correctly ordered spans
+            textNode.remove();
+            const arrowNode = contactHeadline.querySelector('.contact-cta__arrow');
+            charSpans.forEach(span => {
+                if (arrowNode) {
+                    contactHeadline.insertBefore(span, arrowNode);
+                } else {
+                    contactHeadline.appendChild(span);
+                }
+            });
+        }
+
+        // INITIAL STATE: Hide everything for a clean start
+        gsap.set('.contact-cta__headline .char', { opacity: 0, y: 15 });
+        gsap.set('.contact-plane', { opacity: 0 });
+
+        // CREATE TIMELINE
+        const contactTL = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.contact-cta',
+                start: 'top 75%',
+                toggleActions: 'play none none none'
+            }
+        });
+
+        // 1. Plane Swoop (Point to the right)
+        contactTL.fromTo('.contact-plane', 
+            { 
+                x: '-40vw',    // Wider swoop from left
+                y: 150, 
+                rotation: -15, 
+                scale: 0.6,
+                opacity: 0
+            },
+            {
+                x: 0,
+                y: 0,
+                rotation: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 2.5, // Slow, premium landing
+                ease: "power2.out"
+            }, 0);
+
+        // 2. Text formation (Slightly faster stagger)
+        contactTL.to('.contact-cta__headline .char', {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.05,
+            ease: "power1.out"
+        }, 0.5); // Starts once the plane is well into the screen
+
+        // 3. Arrow reveal
+        contactTL.from('.contact-cta__arrow', {
+            opacity: 0,
+            x: -20,
+            duration: 0.8,
+            ease: "back.out(1.7)"
+        }, "-=0.7");
+    }
+
+    // ====== 7. INTERACTIVE PROJECTS FOLDER ======
     const folders = document.querySelectorAll('.folder');
 
     folders.forEach(folder => {

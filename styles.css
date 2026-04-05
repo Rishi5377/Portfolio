@@ -674,7 +674,8 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: none; /* Aligning flat with bg */
+    transform: none;
+    /* Aligning flat with bg */
     transition: transform 0.5s ease;
 }
 
@@ -685,8 +686,10 @@ ul {
 .map-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Back to cover for marker alignment consistency */
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.25)); /* Shadow for the parchment itself */
+    object-fit: cover;
+    /* Back to cover for marker alignment consistency */
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.25));
+    /* Shadow for the parchment itself */
     opacity: 1;
 }
 
@@ -700,15 +703,36 @@ ul {
 }
 
 /* Stagger the float so each pin bobs independently */
-.marker--port { animation-delay: 0s; }
-.marker--learning { animation-delay: 0.7s; }
-.marker--knowledge { animation-delay: 1.4s; }
-.marker--creative { animation-delay: 2.1s; }
-.marker--treasure { animation-delay: 2.8s; }
+.marker--port {
+    animation-delay: 0s;
+}
+
+.marker--learning {
+    animation-delay: 0.7s;
+}
+
+.marker--knowledge {
+    animation-delay: 1.4s;
+}
+
+.marker--creative {
+    animation-delay: 2.1s;
+}
+
+.marker--treasure {
+    animation-delay: 2.8s;
+}
 
 @keyframes marker-float {
-    0%, 100% { transform: translate(-50%, -100%) translateY(0); }
-    50% { transform: translate(-50%, -100%) translateY(-5px); }
+
+    0%,
+    100% {
+        transform: translate(-50%, -100%) translateY(0);
+    }
+
+    50% {
+        transform: translate(-50%, -100%) translateY(-5px);
+    }
 }
 
 /* Red circular glow behind the pin (pulsing) */
@@ -726,10 +750,13 @@ ul {
 }
 
 @keyframes marker-glow-pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translate(-50%, -50%) scale(1);
         opacity: 0.6;
     }
+
     50% {
         transform: translate(-50%, -50%) scale(1.6);
         opacity: 1;
@@ -743,7 +770,7 @@ ul {
     display: block;
     filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.4));
     transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-                filter 0.35s ease;
+        filter 0.35s ease;
     position: relative;
     z-index: 2;
 }
@@ -780,7 +807,7 @@ ul {
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s;
     pointer-events: none;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .marker:hover .marker__label {
@@ -988,119 +1015,188 @@ ul {
     color: var(--text-primary);
 }
 
-/* ====== SECTION 4: CONTACT ====== */
+/* ====== SECTION 4: CONTACT (Editorial CTA) ====== */
 .section--contact {
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 60vh;
+    padding-bottom: 40px;
 }
 
-.contact-card {
-    background-color: var(--cream);
-    border: 1px solid var(--cream-border);
-    border-radius: 12px;
-    padding: 50px;
+.contact-cta {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
     width: 100%;
-    max-width: 600px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
-    overflow: hidden;
 }
 
-/* Decorative grid pattern on the card itself (subtle) */
-.contact-card::before {
-    content: '';
+.contact-plane {
+    position: absolute;
+    width: 225px;
+    /* Increased size for better visibility */
+    height: auto;
+    top: -95px;
+    /* Adjusted for larger scale */
+    left: 16%;
+    /* Adjusted to keep it centered over the transition */
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    /* Will be revealed via GSAP scroll animation */
+}
+
+.contact-cta__text {
+    flex: 1;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+
+
+.contact-cta__headline {
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 4.8vw, 66px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.contact-cta__headline a {
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.contact-cta__headline .char {
+    display: inline-block;
+    min-width: 0.1em; /* Ensures spaces are preserved */
+    opacity: 0;      /* Initial state before GSAP */
+    translate: 0 10px; /* Initial y offset */
+    transition: color 0.3s ease;
+}
+
+.contact-cta__headline a:hover {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-cta__headline a:hover {
+    opacity: 0.6;
+}
+
+.contact-cta__arrow {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.55em;
+    vertical-align: baseline;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.contact-cta__arrow svg {
+    display: block;
+}
+
+.contact-cta__headline a:hover .contact-cta__arrow {
+    transform: translate(6px, -6px);
+}
+
+.contact-cta__illustration {
+    flex: 0 0 380px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    /* Move up slightly out of the grid box for that pop-out editorial look */
+    bottom: -10px;
+}
+
+/* Character stays still */
+.illustration-character {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(10%);
+    transition: filter 0.4s ease;
+}
+
+.contact-cta__illustration:hover .illustration-character {
+    filter: grayscale(0%);
+}
+
+/* Globe floats above the hand */
+.illustration-globe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image:
-        linear-gradient(rgba(201, 169, 110, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201, 169, 110, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
-    pointer-events: none;
+    object-fit: contain;
+    animation: globe-float 4s ease-in-out infinite;
+    filter: grayscale(10%);
+    transition: filter 0.4s ease;
 }
 
-.contact-card__logo {
-    margin-bottom: 24px;
+.contact-cta__illustration:hover .illustration-globe {
+    filter: grayscale(0%);
 }
 
-.contact-card__name h3 {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 20px;
-    letter-spacing: 2px;
-    margin-bottom: 5px;
+@keyframes globe-float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
-.contact-card__name p {
-    font-size: 14px;
-    color: var(--text-body);
-}
 
-.contact-card__divider {
-    height: 1px;
-    background-color: var(--cream-border);
-    margin: 30px 0;
-}
-
-.contact-card__details {
+/* Footer */
+.site-footer {
     display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.contact-row {
-    display: flex;
+    align-items: center;
     justify-content: space-between;
-    gap: 20px;
-}
-
-.contact-col {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.contact-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    color: #888;
-}
-
-.contact-value {
-    font-size: 14px;
-    color: var(--text-primary);
-    word-break: break-all;
-}
-
-.contact-value a {
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color 0.2s;
-    position: relative;
-}
-
-.contact-value a:hover {
-    color: var(--gold-dark);
-}
-
-.contact-value a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--gold);
-    transition: width 0.3s ease;
-}
-
-.contact-value a:hover::after {
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 30px;
+    border-top: 1px solid var(--grid-line);
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 0.5px;
 }
+
+.site-footer__center {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.site-footer__center a {
+    color: #888;
+    transition: color 0.25s ease, transform 0.25s ease;
+    display: flex;
+}
+
+.site-footer__center a:hover {
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
 
 /* ====== RESPONSIVE DESIGN ====== */
 @media (max-width: 1024px) {
@@ -1207,9 +1303,21 @@ ul {
         padding: 40px 20px;
     }
 
-    .contact-row {
+    .contact-cta {
         flex-direction: column;
-        gap: 24px;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .contact-cta__illustration {
+        width: 200px;
+        align-self: flex-end;
+    }
+
+    .site-footer {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
     }
 }
 
@@ -1232,8 +1340,10 @@ ul {
         max-width: 300px;
     }
 
-    .contact-card {
-        padding: 30px 20px;
+    .contact-cta__headline {
+        font-size: 28px;
+        letter-spacing: -0.5px;
+        white-space: normal;
     }
 
     .hero__canvas {
